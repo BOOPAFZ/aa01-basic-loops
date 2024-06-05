@@ -1,0 +1,44 @@
+/*
+Write a function reverb that accepts a word as an argument. The function should
+return a new word where all letters that come after the last vowel (including
+the vowel itself) are repeated at the end of the word. If the value passed in is
+not a string, say someone passes in a number as an argument, then return null.
+
+Vowels are the letters "a", "e", "i", "o", "u".
+*/
+
+// Your code here 
+function reverb(word) {
+    if (typeof word !== 'string') {
+        return null; 
+    }
+    if (word.indexOf('0') !== -1 || word.indexOf('1') !== -1 || word.indexOf('2') !== -1 || 
+        word.indexOf('3') !== -1 || word.indexOf('4') !== -1 || word.indexOf('5') !== -1 || 
+        word.indexOf('6') !== -1 || word.indexOf('7') !== -1 || word.indexOf('8') !== -1 || 
+        word.indexOf('9') !== -1) {
+        return word
+    }
+    let firstVowelIndex = 0
+    let i = word.length - 1
+    while (i >= 0) { 
+        let char1 = word.toLowerCase()[i];
+        if (char1 === "a" || char1 === "e"|| char1 === "i"|| char1 === "o"|| char1 === "u"  ) {
+            firstVowelIndex = i
+            break
+        }
+        i--;
+    }
+    
+    return word + word.slice(firstVowelIndex);
+}
+
+console.log(reverb('running')); // runninging
+console.log(reverb('FAMILY'));  // FAMILYILY
+console.log(reverb('trash'));   // trashash
+console.log(reverb('DISH'));    // DISHISH
+console.log(reverb('197393'));  // 197393
+console.log(reverb(197393));    // null
+
+
+/******************** DO NOT MODIFY ANY CODE BELOW THIS LINE *****************/
+module.exports = reverb;
